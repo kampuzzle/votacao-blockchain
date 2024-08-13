@@ -1,0 +1,16 @@
+version: "3"
+
+services:
+  vote-web:
+    container_name: "vote-web"
+    build:
+      context: .
+      dockerfile: web/Dockerfile
+    command: bash -c "npm install && ng serve --host=0.0.0.0 --disable-host-check --poll=1000"
+    ports:
+      - "4200:4200"
+    volumes:
+      - ./web:/web
+    working_dir: /web
+    tty: true
+    stdin_open: true
